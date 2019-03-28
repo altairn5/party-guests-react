@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
-import { dispatch } from 'rxjs/internal/observable/pairs';
+// import { dispatch } from 'rxjs/internal/observable/pairs';
+import Person from './person';
 
 export default class Guest extends Component {
 
-  state = {
-      isInvited: false
-  }
-
   render () {
-
     const isInvited = () => { 
         this.props.dispatch({
             type: "INVITED",
@@ -16,15 +12,10 @@ export default class Guest extends Component {
         })
     }
 
-    const toggleClass = `${this.state.isInvited ? "hidden" : "" }`
-
-
       return (  
             <div onClick={isInvited}>
-                <div className= {toggleClass}>  
-                    <div className="user-name">{this.props.name}</div>
-                    <div className="user-username">{this.props.username}</div>
-                    <div className="user-email">{this.props.email}</div>
+                <div>  
+                    <Person {...this.props}/>
                 </div>  
             </div>
           )

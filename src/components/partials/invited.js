@@ -5,7 +5,7 @@ import Guest from  './guest';
 const partyGuests = (props) => {
 
     return (props.invitedGuests.map( friend => {
-        return <Guest dispatch={props.dispatch} {...friend}/>
+        return <Guest key={friend.id} dispatch={props.dispatch} {...friend}/>
         })
     )
 }

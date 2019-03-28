@@ -4,23 +4,31 @@ const initialState = {
     users: [],
     invitedGuests: [],
     dataLoad: false,
-    
+
 }
 
 const reducer = ( oldState=initialState, action) => {
     switch(action.type){
        case "INVITED":
-        return {
+        const newStado = {
             ...oldState,
             users: oldState.users.filter( user => user.name !== action.payload.name),
             invitedGuests: [...oldState.invitedGuests, action.payload],
-            isInvited: true
+            // isInvited: true
         }
+        console.log("newStado", newStado)
+        return newStado
+        // return {
+        //     ...oldState,
+        //     users: oldState.users.filter( user => user.name !== action.payload.name),
+        //     invitedGuests: [...oldState.invitedGuests, action.payload],
+        //     isInvited: true
+        // }
         case "USERS":
         return {
             ...oldState,
             users: [...action.payload],
-            dataLoad: true
+            dataLoad: true,
         }
         default: return  oldState
     }

@@ -19,6 +19,7 @@ export default class extends Component {
     componentDidMount() {
         const callMeToUpdateState = () =>{
             this.setState(store.getState())
+            console.log("I UPODATE STADOD", this.state)
         }
 
         this.unsubscribe = store.subscribe(callMeToUpdateState)
@@ -30,6 +31,7 @@ export default class extends Component {
                     type: "USERS",
                     payload: json
                 })
+            //  console.log("ele estado de mi guesstsLIST", this.state)
             });
     }
 
