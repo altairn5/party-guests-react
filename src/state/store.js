@@ -4,40 +4,36 @@ const initialState = {
     users: [],
     invitedGuests: [],
     dataLoad: false,
-
 }
 
 const reducer = ( oldState=initialState, action) => {
     switch(action.type){
        case "INVITED":
-        const newStado = {
+        return {
             ...oldState,
             users: oldState.users.filter( user => user.name !== action.payload.name),
             invitedGuests: [...oldState.invitedGuests, action.payload],
-            // isInvited: true
         }
-        console.log("newStado", newStado)
-        return newStado
-        // return {
-        //     ...oldState,
-        //     users: oldState.users.filter( user => user.name !== action.payload.name),
-        //     invitedGuests: [...oldState.invitedGuests, action.payload],
-        //     isInvited: true
-        // }
-        case "USERS":
+      case "UNINVITED":
+        return {
+          ...oldState,
+          users: [...oldState.users, action.payload],
+          invitedGuests: oldState.invitedGuests.filter( uninvited => uninvited.name !== action.payload.name)
+        }
+      case "USERS_LOADED":
         return {
             ...oldState,
             users: [...action.payload],
             dataLoad: true,
         }
-        default: return  oldState
+        default: return oldState
     }
-
 }
 
-const store = createStore( 
+
+const store = createStore(
     reducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() 
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() //middlewear redux-devtools-extension lets track state overtime
     )
 
 export default store;

@@ -8,13 +8,18 @@ import store from '../../state/store';
 
 // const parsedData = ( users ) => users.map()
 
-
+/*
+*
+*
+* Previosly used before adding hooks and switching to function components
+*
+*/
 
 export default class extends Component {
 
-    // set state
+    // sets initial state  state
     state = store.getState();
-    
+
     componentDidMount() {
         const callMeToUpdateState = () =>{
             this.setState(store.getState())
